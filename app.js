@@ -1,10 +1,11 @@
 // Setup dependencies
 const express = require('express')
+const date = require(__dirname + '/date.js')
 const app = express()
 const port = 3000
 
-let items = []
-let workItems = []
+const items = []
+const workItems = []
 
 // Set view engine to EJS
 app.set('view engine', 'ejs')
@@ -14,14 +15,8 @@ app.use(express.urlencoded({extended: true}))
 
 // GET home route
 app.get('/', (req, res) => {
-    // Find todays date
-    let today = new Date()
-    let options = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-    }
-    let day = today.toLocaleDateString('en-US', options)
+    
+    let day = date.getDate()
 
     // Render todays date
     res.render('pages/list', {listTitle: day, newListItems: items})
