@@ -8,6 +8,7 @@ let items = []
 // Set view engine to EJS
 app.set('view engine', 'ejs')
 
+app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 
 // GET home route
